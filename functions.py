@@ -166,3 +166,27 @@ def get_customer_purchase_history(customer_name: str, phone: int) -> list[dict]:
     except Exception as e:
         print(e)
         return e
+
+def plotting():
+    querySelectAllMedicines = "SELECT id, medicine FROM medicines"
+    cur.execute(querySelectAllMedicines)
+    medicines_rows = cur.fetchall()
+
+    medicines = []
+    purchases = []
+
+    for m in medicines_rows:
+        m_id, m_name = m
+
+        queryGetPurchaseNum = "SELECT * FROM purchase_records WHERE medicine_id=%s"
+        cur.execute(queryGetPurchaseNum, (m_id,))
+        numberPurchases = cur.fetchall()
+
+        medicines.append(m_name)
+        purchases.append(len(numberPurchases))
+
+
+    return medicines, purchases
+
+
+

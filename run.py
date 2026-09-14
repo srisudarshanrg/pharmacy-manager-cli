@@ -1,5 +1,6 @@
 from datetime import datetime
-from functions import add_to_medicine_catalog, delete_from_medicine_catalog, purchase_medicine, add_to_customers, get_id_from_customer_name, get_customer_purchase_history
+from functions import add_to_medicine_catalog, delete_from_medicine_catalog, purchase_medicine, add_to_customers, get_id_from_customer_name, get_customer_purchase_history, plotting
+import matplotlib.pyplot as mt
 
 options = int(input("Are you an admin or a customer:\n" \
 "(1) Admin\n" \
@@ -10,7 +11,8 @@ if options == 1:
     admin_options = int(input("\nChoose one of the following options:\n" \
     "(1) add a medicine\n" \
     "(2) remove a medicine\n" \
-    "(3) view customer records\n"
+    "(3) view customer records\n" \
+    "(4) graph of medicine purchases\n"
     "Enter Option: "))
 
     if admin_options == 1:
@@ -47,6 +49,18 @@ if options == 1:
         for s in status:
             print(f"|  {s["id"]}  |  {s["name"]}  |  {s["medicine"]}  |  {s["expiry"]}  |  {s["quantity"]}  |  {s["price"]} rs")    
 
+    elif admin_options == 4:
+        medicines, values = plotting()
+
+        mt.bar(medicines, values, color="darkblue")
+        mt.xlabel("Medicine")
+        mt.ylabel("Number of Purchases")
+        mt.title("Number of Medicine Purchases")
+
+        mt.yticks([1, 2, 3, 4, 5])
+        mt.ylim(0, 5.5)
+
+        mt.show()
     else:
         print("Valid entries are 1, 2 or 3. Enter one of 1, 2 or 3 only")
 
