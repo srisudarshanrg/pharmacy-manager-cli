@@ -12,7 +12,7 @@ customer_info = """
     CREATE TABLE customers (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(30) NOT NULL,
-        phone INT(10) NOT NULL
+        phone INT(10) NOT NULL UNIQUE
     )
 """
 

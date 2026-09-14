@@ -21,5 +21,7 @@ else:
     for row in rows:
         print(row)
 
+import cli
+
 cur.close()
 db.close()
