@@ -36,3 +36,28 @@ if options == 1:
         medicine_name = input("Enter medicine name: ")
         status = delete_from_medicine_catalog(medicine_name)
         print(status)
+
+    elif admin_options == 3:
+        customer_details = input("Enter customer name and phone number separated by spaces: ")
+        customer_details = customer_details.split(" ")
+
+        status = get_customer_purchase_history(customer_details[0], int(customer_details[1]))
+
+        print(status)
+
+    else:
+        print("Valid entries are 1, 2 or 3. Enter one of 1, 2 or 3 only")
+
+elif options == 2:
+    customer_options = int(input("Choose on of the following\n" \
+    "(1) Purchase Medicine\n" \
+    "Enter option: "))
+
+    if customer_options == 1:
+        purchase_medicine_input = input("Enter your name, phone number and medicine name separated by spaces ")
+
+        purchase_medicine_list = purchase_medicine_input.split(" ")
+        status = purchase_medicine(purchase_medicine_list[0], purchase_medicine_list[1], purchase_medicine_list[2])
+
+        print(status)
+
